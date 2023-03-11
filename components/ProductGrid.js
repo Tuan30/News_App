@@ -3,7 +3,7 @@ import React from 'react'
 import Icon from './Icon'
 import { COLORS } from '../constant'
 
-const ProductGrid = () => {
+const ProductGrid = ({ data }) => {
     return (
         <TouchableOpacity style={{
             flex: 1,
@@ -27,7 +27,7 @@ const ProductGrid = () => {
                         height: '100%',
                         borderTopLeftRadius: 15,
                         borderBottomLeftRadius: 15,
-                    }} source={{ uri: "https://cdnmedia.baotintuc.vn/Upload/XmrgEWAN1PzjhSWqVO54A/files/2018/09/1209/h4.jpg" }} />
+                    }} source={{ uri: data.thumb }} />
                 </View>
                 <View style={{
                     flex: 1,
@@ -43,11 +43,11 @@ const ProductGrid = () => {
                             marginBottom: 8,
                             textAlign: 'center',
                         }}
-                        numberOfLines={2}>Hình ảnh vệ tinh 9 cơn bão mạnh cùng lúc xuất hiện bủa vây thế giới</Text>
+                        numberOfLines={2}>{data.title}</Text>
 
                     <View style={{ flexDirection: 'row' }}>
                         <Icon style={{ color: COLORS.icon }} />
-                        <Text>23/02/2023</Text>
+                        <Text>{data.publish_date}</Text>
                     </View>
 
                 </View>

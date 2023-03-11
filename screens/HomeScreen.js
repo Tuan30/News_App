@@ -18,10 +18,10 @@ const HomeScreen = () => {
         const categoryItem = categoryData?.find(category => category.id === item.id)
 
         return (
-            item.status && (
-                item.type === 'colum'
+            item.status && categoryItem && (
+                item.type === 'grid'
                     ? <CategoryGrid title={categoryItem.name} categoryId={categoryItem.id} />
-                    : <CategoryGrid title={categoryItem.name} categoryId={categoryItem.id} />
+                    : <CategoryColum title={categoryItem.name} categoryId={categoryItem.id} />
             )
         )
     }
