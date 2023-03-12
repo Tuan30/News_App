@@ -5,7 +5,7 @@ const SettingSlice = createSlice({
     initialState: {
         home: [
             { id: 10, type: 'grid', status: true },
-            { id: 2, type: 'grid', status: true },
+            { id: 2, type: 'colum', status: true },
             { id: 3, type: 'grid', status: true }
         ]
     },

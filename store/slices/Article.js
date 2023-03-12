@@ -9,10 +9,19 @@ export const fetchArticleWithCategoryId = createAsyncThunk(
     }
 )
 
+export const fetchAllArticleWithCategoryId = createAsyncThunk(
+    'article/fetchAllArticleWithCategoryId',
+    async (data, thunkAPI) => {
+        const response = await ArticleService.list(data)
+        return response.data
+    }
+)
+
 const articleSlice = createSlice({
     name: 'article',
     initialState: {
-        items: []
+        items: [],
+        allItems: []
     },
     reducers: {},
     extraReducers: (builder) => {
@@ -22,6 +31,12 @@ const articleSlice = createSlice({
                 state.items = [...action.payload, ...state.items]
             })
             .addCase(fetchArticleWithCategoryId.rejected, (state, action) => {
+                console.log(action.error.message);
+            })
+            .addCase(fetchAllArticleWithCategoryId.fulfilled, (state, action) => {
+                state.allItems = action.payload
+            })
+            .addCase(fetchAllArticleWithCategoryId.rejected, (state, action) => {
                 console.log(action.error.message);
             })
     },

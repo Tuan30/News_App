@@ -1,6 +1,6 @@
 import { View, Text } from 'react-native'
 import React from 'react'
-import { HomeScreen } from '../screens'
+import { CategoryScreen, HomeScreen, ProductScreen } from '../screens'
 import { createStackNavigator } from '@react-navigation/stack'
 import { COLORS } from '../constant'
 import { IconHeader } from '../components'
@@ -28,6 +28,16 @@ const HomeStackScreen = () => {
                         )
                     }
                 } />
+            <HomeStack.Screen
+                name="CategoryScreen"
+                component={CategoryScreen}
+                options={({ route }) => ({ title: route.params.name })}
+            />
+            <HomeStack.Screen
+                name="ProductScreen"
+                component={ProductScreen}
+                options={({ route }) => ({ title: route.params.name })}
+            />
         </HomeStack.Navigator>
     )
 }

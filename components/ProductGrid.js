@@ -2,18 +2,33 @@ import { View, Text, TouchableOpacity, Image } from 'react-native'
 import React from 'react'
 import Icon from './Icon'
 import { COLORS } from '../constant'
+import { useNavigation, useRoute } from '@react-navigation/native'
 
 const ProductGrid = ({ data }) => {
+
+    const navigation = useNavigation()
+
+    const onArticle = () => {
+        navigation.push("ProductScreen", {
+            name: data.title,
+            id: data.id,
+            thumb: data.thumb,
+            link: data.link
+        })
+    }
+
     return (
-        <TouchableOpacity style={{
-            flex: 1,
-            width: '100%',
-            height: 200,
-            justifyContent: 'center',
-            alignItems: 'center',
-            marginBottom: 15,
-            paddingHorizontal: 15
-        }} >
+        <TouchableOpacity
+            onPress={onArticle}
+            style={{
+                flex: 1,
+                width: '100%',
+                height: 200,
+                justifyContent: 'center',
+                alignItems: 'center',
+                marginBottom: 15,
+                paddingHorizontal: 15
+            }} >
             <View style={{
                 flex: 1,
                 backgroundColor: COLORS.background,

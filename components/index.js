@@ -4,6 +4,7 @@ import CategoryGrid from "./CategoryGrid"
 import GirdPrice from "./GirdPrice"
 import DrawerComponents from "./DrawerComponents"
 import CategorySetting from "./CategorySetting"
+import ProductColum from "./ProductColum"
 
 export {
     IconHeader,
@@ -11,5 +12,6 @@ export {
     CategoryGrid,
     GirdPrice,
     DrawerComponents,
-    CategorySetting
+    CategorySetting,
+    ProductColum
 }
