@@ -1,16 +1,16 @@
-import { View, Text } from 'react-native'
-import React from 'react'
-import { createStackNavigator } from '@react-navigation/stack'
+import React from 'react';
+import { createStackNavigator } from '@react-navigation/stack';
+import { COLORS } from '../constant';
+import { IconHeader } from '../components';
+import { SettingScreen } from '../screens';
 
-import { COLORS } from "../constant"
-import { SettingScreen } from "../screens"
-import { IconHeader } from '../components'
 
-const Stack = createStackNavigator()
+const SettingStack = createStackNavigator();
 
-const SettingStackScreen = () => {
+const SettingStackScreen = (props) => {
+
     return (
-        <Stack.Navigator
+        <SettingStack.Navigator
             screenOptions={{
                 headerStyle: {
                     backgroundColor: COLORS.primary
@@ -18,19 +18,15 @@ const SettingStackScreen = () => {
                 headerTintColor: COLORS.second
             }}
         >
-            <Stack.Screen
-                name='SettingScreen'
-                component={SettingScreen}
-                options={
-                    {
-                        title: "Cài Đặt",
-                        headerLeft: () => (
-                            <IconHeader />
-                        )
-                    }
-                } />
-        </Stack.Navigator>
-    )
+            <SettingStack.Screen name="SettingScreen" component={SettingScreen} options={{
+                title: 'Cài đặt',
+                headerLeft: () => (
+                    <IconHeader {...props} />
+                )
+            }} />
+        </SettingStack.Navigator>
+    );
 }
+
 
 export default SettingStackScreen

@@ -1,8 +1,15 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 import { COLORS, FONTSIZE } from '../constant'
+import { FormatChangeCoin, FormatPriceCoin, FormatPriceGold } from "../help"
 
-const GirdPrice = ({ layoutNumber }) => {
+const GirdPrice = ({ data, coin }) => {
+
+    let name = coin ? data.name : data.type
+    let buy = coin ? FormatPriceCoin(data.price) : FormatPriceGold(data.buy)
+    let sell = coin ? FormatChangeCoin(data.percent_change_24h) : FormatPriceGold(data.sell)
+
+    const layoutNumber = data.percent_change_24h > 0 ? COLORS.numberInc : COLORS.numberDow
 
     return (
         <View style={{
@@ -23,7 +30,7 @@ const GirdPrice = ({ layoutNumber }) => {
                 <Text style={{
                     fontSize: FONTSIZE.h3,
                     color: COLORS.layoutText
-                }}>Vang SJC</Text>
+                }}>{name}</Text>
             </View>
             <View style={{
                 flex: 1,
@@ -33,7 +40,7 @@ const GirdPrice = ({ layoutNumber }) => {
                 <Text style={{
                     fontSize: FONTSIZE.h3,
                     color: COLORS.numberInc
-                }}>52.000.000</Text>
+                }}>{buy}</Text>
             </View>
             <View style={{
                 flex: 1,
@@ -43,7 +50,7 @@ const GirdPrice = ({ layoutNumber }) => {
                 <Text style={{
                     fontSize: FONTSIZE.h3,
                     color: layoutNumber ? COLORS.numberDow : COLORS.numberInc
-                }}>50.000.000</Text>
+                }}>{sell}</Text>
             </View>
         </View>
     )

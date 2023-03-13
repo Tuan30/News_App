@@ -11,7 +11,7 @@ export {
     CoinScreen,
     GoldScreen,
     DrawerScreen,
-    SettingScreen,
     CategoryScreen,
-    ProductScreen
+    ProductScreen,
+    SettingScreen
 }
