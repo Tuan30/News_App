@@ -9,7 +9,7 @@ const GirdPrice = ({ data, coin }) => {
     let buy = coin ? FormatPriceCoin(data.price) : FormatPriceGold(data.buy)
     let sell = coin ? FormatChangeCoin(data.percent_change_24h) : FormatPriceGold(data.sell)
 
-    const layoutNumber = data.percent_change_24h > 0 ? COLORS.numberInc : COLORS.numberDow
+    const layoutNumber = data.percent_change_24h < 0 ? COLORS.numberDow : COLORS.numberInc
 
     return (
         <View style={{
@@ -49,7 +49,7 @@ const GirdPrice = ({ data, coin }) => {
             }}>
                 <Text style={{
                     fontSize: FONTSIZE.h3,
-                    color: layoutNumber ? COLORS.numberDow : COLORS.numberInc
+                    color: layoutNumber
                 }}>{sell}</Text>
             </View>
         </View>

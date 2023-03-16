@@ -8,7 +8,9 @@ const SettingSlice = createSlice({
             { id: 2, type: 'colum', status: true },
             { id: 3, type: 'grid', status: true },
             { id: 1, type: 'colum', status: true },
-            { id: 4, type: 'grid', status: true }
+            { id: 4, type: 'grid', status: true },
+            { id: 5, type: 'colum', status: true },
+            { id: 6, type: 'colum', status: true }
         ]
     },
     reducers: {

@@ -35,6 +35,7 @@ const HomeScreen = () => {
             backgroundColor: COLORS.background
         }}>
             <FlatList
+                showsVerticalScrollIndicator={false}
                 data={showHome}
                 renderItem={showCategoryHome}
                 keyExtractor={(item) => item.id.toString()}

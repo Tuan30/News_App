@@ -12,8 +12,6 @@ import CategoryService from './services/category';
 import store from './store';
 
 export default function App(props) {
-
-  console.log(CategoryService.getCategory())
   return (
     <Provider store={store}>
       <NavigationContainer>
