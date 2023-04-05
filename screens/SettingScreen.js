@@ -9,8 +9,6 @@ const SettingScreen = () => {
 
     const categoryData = useSelector(state => state.Category.category)
 
-    console.log("categoryData", categoryData)
-
     const showSetting = ({ item }) => {
         return (
             <CategorySetting data={item} />

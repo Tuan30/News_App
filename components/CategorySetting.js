@@ -1,13 +1,44 @@
+import React, { useState, useEffect } from 'react'
 import { View, Text } from 'react-native'
-import React from 'react'
-import { COLORS, FONTSIZE, SELECT_STYLES } from '../constant'
-import RNPickerSelect from 'react-native-picker-select';
 import { Switch } from 'react-native-paper';
+import { COLORS, FONTSIZE, SELECT_STYLES } from '../constant';
+import RNPickerSelect from 'react-native-picker-select';
+import { useSelector, useDispatch } from 'react-redux'
+import { SettingHome } from '../store/slices/Setting'
 
 const CategorySetting = ({ data }) => {
+    const [isSwitchOn, setIsSwitchOn] = useState(false);
+    const [valueCheck, setValueCheck] = useState('')
+    const settingData = useSelector(state => state.Setting.home)
+    const dispatch = useDispatch()
 
-    const [isSwitchOn, setIsSwitchOn] = React.useState(false);
-    const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn);
+
+    const item = settingData.find(item => item.id == data.id)
+
+    useEffect(() => {
+        item?.status && setIsSwitchOn(true)
+        setValueCheck(item?.type)
+    }, [])
+
+    const onToggleSwitch = () => {
+        setIsSwitchOn(!isSwitchOn);
+        dispatch(SettingHome({
+            id: data.id,
+            type: valueCheck,
+            status: !isSwitchOn
+        }))
+    }
+
+    const checkValue = (value) => {
+        if (value) {
+            setValueCheck(value)
+            dispatch(SettingHome({
+                id: data.id,
+                type: value,
+                status: isSwitchOn
+            }))
+        }
+    }
 
     return (
         <View style={{
@@ -21,11 +52,6 @@ const CategorySetting = ({ data }) => {
         }}>
             <Text style={{ fontSize: FONTSIZE.h2 }}>{data.name}</Text>
             <RNPickerSelect
-                onValueChange={(value) => console.log(value)}
-                items={SELECT_STYLES.option}
-                Icon={() => <View />}
-                useNativeAndroidPickerStyle={false}
-                placeholder={SELECT_STYLES.default}
                 style={{
                     inputIOS: {
                         fontSize: FONTSIZE.h3,
@@ -33,9 +59,15 @@ const CategorySetting = ({ data }) => {
                         paddingTop: 10
                     },
                     inputAndroid: {
-                        color: COLORS.black
+                        padding: 10
                     }
                 }}
+                Icon={() => <View />}
+                onValueChange={(value) => checkValue(value)}
+                items={SELECT_STYLES.option}
+                useNativeAndroidPickerStyle={false}
+                value={valueCheck}
+                placeholder={SELECT_STYLES.default}
             />
             <Switch
                 value={isSwitchOn}
